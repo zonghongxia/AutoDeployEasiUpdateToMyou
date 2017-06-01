@@ -4,14 +4,18 @@
 #include <string>
 #include <string.h>
 #include <atlstr.h>
+#include <direct.h>
 
+#include "PostFiletoWeb.h"
 #include "SilentInstallation.h"
 #include "GetExeFile.h"
 #include "ExtractVersion.h"
 #include  "Changejson.h"
 #include "CopyFile.h"
 #include "myzip.h"
-
+#include "GetCookie.h"
+#include "md5.h"
+#include "deletefile.h"
 
 int main()
 {
@@ -41,7 +45,7 @@ int main()
 	SilentInstallation nnode(&node);
 	std::string installationpath;
 	nnode.Run(installationpath);
-	std::cout <<"静默安装的路径"<< installationpath << std::endl;
+	std::cout <<"静默安装的路径="<< installationpath << std::endl;
 
 	//复制json文件到安装目录下
 	std::string sour = jsonpath;
@@ -57,105 +61,44 @@ int main()
 	}
 
 	//压缩
-	std::string zippath = installationpath;
+	std::string zippath = "D://SeewoService";
 	zippath += version;
 	zippath += ".zip";
 	ZIP zip(installationpath,zippath);
 	zip.CreateMyZip();
 
+	//计算MD5值
+	//std::string str("D://myouexefile/6.0/SeewoService/SeewoServiceSetup_6.1.3.2590.exe");
+	//std::string zippath("D://SeewoService6.1.3.2590.zip");
+
+	const std::string exepath = str;
+	std::cout << "exepath="<<exepath << std::endl;
+	MD5_CTX mdexe;
+	char buf[MY_BUFSIZE] = { 0 };
+	mdexe.GetFileMd5(buf, exepath.c_str());
+	const std::string exemd5 = buf;
+	std::cout << exemd5 << std::endl;
+
+	const std::string _zippath = zippath;
+	std::cout << "_zippath=" << _zippath << std::endl;
+	MD5_CTX mdzip;
+	char buf2[MY_BUFSIZE] = { 0 };
+	mdzip.GetFileMd5(buf2, _zippath.c_str());
+	const std::string zipmd5 = buf2;
+	std::cout << zipmd5 << std::endl;
+
 	//上传
+	GetCookie  gcookie(getcookieurl, userpassword, contenttype);
+	std::string cookie = gcookie.GetCookies();
+	std::cout << cookie << std::endl;
+
+	Post_Node postnode = { cvte_url ,cookie ,zipfilename ,zippath ,exefilename ,str ,exemd5 ,zipmd5 };
+	PostFiletoWeb web(&postnode);
+	web.PostToWeb();
+
+	//删除产生的zip文件
+	DeleteFolderorFile deletefolder(zippath);
+	deletefolder.DeleteDir();
 
 	return 0;
 }
-
-
-//异步调用
-//cout << ShellExecute(0, (LPCWSTR)L"open", (LPCWSTR)L"D:\\myouexefile\\6.0\\SeewoService\\SeewoServiceSetup_6.1.2.5533.exe", (LPCWSTR)L"/S ", (LPCWSTR)(NULL), SW_SHOWNOACTIVATE) << endl;
-
-//静默安装的参数
-//const std::string str = "D:\\myouexefile\\6.0\\SeewoService\\SeewoServiceSetup_6.1.2.5533.exe";
-//CString temp = str.c_str();
-//LPCWSTR path = (LPCWSTR)(temp.AllocSysString());
-
-//const std::string str2 = "/S";
-//CString temp2 = str2.c_str();
-//LPCWSTR parameters = (LPCWSTR)(temp2.AllocSysString());
-
-//const std::string str3 = "open";
-//CString temp3 = str3.c_str();
-//LPCWSTR verb = (LPCWSTR)(temp3.AllocSysString());
-
-////进行路径查询的参数
-//const std::string str4 = "SOFTWARE\\Seewo\\SeewoService";
-//CString temp4 = str4.c_str();
-//LPCWSTR keyvalue = (LPCWSTR)(temp4.AllocSysString());
-
-//const std::string str5 = "path";
-//CString temp5 = str5.c_str();
-//LPCWSTR pathvalue = (LPCWSTR)(temp5.AllocSysString()); 
-
-//const std::string str6 = "version";
-//CString temp6 = str6.c_str();
-//LPCWSTR versionvalue = (LPCWSTR)(temp6.AllocSysString()); 
-
-
-
-////静默安装
-//SHELLEXECUTEINFO sei;
-//ZeroMemory(&sei, sizeof(SHELLEXECUTEINFO));
-
-//sei.cbSize = sizeof(SHELLEXECUTEINFO);
-//sei.lpFile = path;
-//sei.lpParameters = parameters;
-//sei.nShow = SW_SHOW;
-//sei.lpVerb = verb;
-//sei.fMask = SEE_MASK_NOCLOSEPROCESS;
-////进行静默安装
-////ShellExecuteEx(&sei);
-//cout << sei.hInstApp << endl;
-////等待当前进程的结束
-////WaitForSingleObject(sei.hProcess, INFINITE);
-
-////安装路径、版本号的查询
-//HKEY hKey;
-
-//WCHAR szProductType2[MY_BUFSIZE];
-//memset(szProductType2, 0, sizeof(szProductType2));
-
-//WCHAR szProductType3[MY_BUFSIZE];
-//memset(szProductType3, 0, sizeof(szProductType3));
-
-//DWORD dwBufLen = MY_BUFSIZE;
-//LONG lRet;
-//// 下面是打开注册表, 只有打开后才能做其他操作  
-//lRet = RegOpenKeyEx(HKEY_LOCAL_MACHINE, keyvalue,
-//	0, KEY_QUERY_VALUE, &hKey);
-//if (lRet != ERROR_SUCCESS)   // 判断是否打开成功   
-//	return 1;
-////下面开始查询   
-
-//lRet = RegQueryValueEx(hKey, pathvalue, NULL, NULL,
-//	(LPBYTE)szProductType2, &dwBufLen);
-//if (lRet != ERROR_SUCCESS)  // 判断是否查询成功
-//{
-//	return 1;
-//}
-
-//lRet = RegQueryValueEx(hKey, versionvalue, NULL, NULL,
-//	(LPBYTE)szProductType3, &dwBufLen);
-//if (lRet != ERROR_SUCCESS)  // 判断是否查询成功
-//{
-//	return 1;
-//}
-//RegCloseKey(hKey);
-
-////读取注册表中的静默安装的path
-//char ansipath[MY_BUFSIZE];
-//WideCharToMultiByte(CP_ACP, 0, szProductType2, -1, ansipath, sizeof(ansipath), NULL, NULL);
-//cout << ansipath <<endl;
-
-////读取注册表中的静默安装的version
-//char ansiversion[MY_BUFSIZE];
-//WideCharToMultiByte(CP_ACP, 0, szProductType3, -1, ansiversion, sizeof(ansiversion), NULL, NULL);
-//cout << ansiversion <<endl;
-

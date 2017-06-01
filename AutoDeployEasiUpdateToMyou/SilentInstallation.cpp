@@ -36,10 +36,10 @@ void SilentInstallation::Run(std::string &installationpath)
 	sei.lpVerb = m_node.m_verb;
 	sei.fMask = SEE_MASK_NOCLOSEPROCESS;
 	//进行静默安装
-	//ShellExecuteEx(&sei);
+	ShellExecuteEx(&sei);
 	std::cout << sei.hInstApp << std::endl;
 	//等待当前进程的结束
-	//WaitForSingleObject(sei.hProcess, INFINITE);
+	WaitForSingleObject(sei.hProcess, INFINITE);
 
 	//安装路径、版本号的查询
 	HKEY hKey;

@@ -51,6 +51,18 @@
     <ClCompile Include="List_Filepath.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="PostFiletoWeb.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="GetCookie.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="md5.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="deletefile.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="SilentInstallation.h">
@@ -87,6 +99,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="List_Filepath.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="PostFiletoWeb.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="GetCookie.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="md5.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="deletefile.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

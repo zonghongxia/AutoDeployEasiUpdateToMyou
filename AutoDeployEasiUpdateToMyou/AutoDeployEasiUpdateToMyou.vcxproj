@@ -149,14 +149,18 @@
   <ItemGroup>
     <ClCompile Include="Changejson.cpp" />
     <ClCompile Include="CopyFile.cpp" />
+    <ClCompile Include="deletefile.cpp" />
     <ClCompile Include="ExtractVersion.cpp" />
+    <ClCompile Include="GetCookie.cpp" />
     <ClCompile Include="GetDiffHour.cpp" />
     <ClCompile Include="GetExeFile.cpp" />
     <ClCompile Include="list_exefile.cpp" />
     <ClCompile Include="List_Filepath.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="md5.cpp" />
     <ClCompile Include="Move_Cursor.cpp" />
     <ClCompile Include="myzip.cpp" />
+    <ClCompile Include="PostFiletoWeb.cpp" />
     <ClCompile Include="SilentInstallation.cpp" />
     <ClCompile Include="zip.cpp" />
   </ItemGroup>
@@ -164,13 +168,17 @@
     <ClInclude Include="Changejson.h" />
     <ClInclude Include="Constant.h" />
     <ClInclude Include="CopyFile.h" />
+    <ClInclude Include="deletefile.h" />
     <ClInclude Include="ExtractVersion.h" />
+    <ClInclude Include="GetCookie.h" />
     <ClInclude Include="GetDiffHour.h" />
     <ClInclude Include="GetExeFile.h" />
     <ClInclude Include="list_exefile.h" />
     <ClInclude Include="List_Filepath.h" />
+    <ClInclude Include="md5.h" />
     <ClInclude Include="Move_Cursor.h" />
     <ClInclude Include="myzip.h" />
+    <ClInclude Include="PostFiletoWeb.h" />
     <ClInclude Include="SilentInstallation.h" />
     <ClInclude Include="zip.h" />
   </ItemGroup>
@@ -180,11 +188,13 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
     <Import Project="..\packages\Cvte.jsoncpp.native.dynamic.md_d.1.7.4\build\native\Cvte.jsoncpp.native.dynamic.md_d.targets" Condition="Exists('..\packages\Cvte.jsoncpp.native.dynamic.md_d.1.7.4\build\native\Cvte.jsoncpp.native.dynamic.md_d.targets')" />
+    <Import Project="..\packages\Cvte.libcurl.native.dynamic.md_d.7.49.1\build\native\Cvte.libcurl.native.dynamic.md_d.targets" Condition="Exists('..\packages\Cvte.libcurl.native.dynamic.md_d.7.49.1\build\native\Cvte.libcurl.native.dynamic.md_d.targets')" />
   </ImportGroup>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\Cvte.jsoncpp.native.dynamic.md_d.1.7.4\build\native\Cvte.jsoncpp.native.dynamic.md_d.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Cvte.jsoncpp.native.dynamic.md_d.1.7.4\build\native\Cvte.jsoncpp.native.dynamic.md_d.targets'))" />
+    <Error Condition="!Exists('..\packages\Cvte.libcurl.native.dynamic.md_d.7.49.1\build\native\Cvte.libcurl.native.dynamic.md_d.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Cvte.libcurl.native.dynamic.md_d.7.49.1\build\native\Cvte.libcurl.native.dynamic.md_d.targets'))" />
   </Target>
 </Project>
