@@ -7,7 +7,9 @@
 #include <string>
 #include <string.h>
 #include <atlstr.h>
-#include "Constant.h"
+//#include "Constant.h"
+
+const int  MY_BUFSIZE = 256;
 
 typedef struct StringNode
 {

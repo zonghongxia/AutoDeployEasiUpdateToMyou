@@ -161,6 +161,7 @@
     <ClCompile Include="Move_Cursor.cpp" />
     <ClCompile Include="myzip.cpp" />
     <ClCompile Include="PostFiletoWeb.cpp" />
+    <ClCompile Include="Postpackage.cpp" />
     <ClCompile Include="SilentInstallation.cpp" />
     <ClCompile Include="zip.cpp" />
   </ItemGroup>
@@ -178,7 +179,9 @@
     <ClInclude Include="md5.h" />
     <ClInclude Include="Move_Cursor.h" />
     <ClInclude Include="myzip.h" />
+    <ClInclude Include="PostConstant.h" />
     <ClInclude Include="PostFiletoWeb.h" />
+    <ClInclude Include="Postpackage.h" />
     <ClInclude Include="SilentInstallation.h" />
     <ClInclude Include="zip.h" />
   </ItemGroup>

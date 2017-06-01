@@ -5,7 +5,7 @@
 #include <curl/curl.h>
 #include <string>
 #include "Move_Cursor.h"
-#include "Constant.h"
+#include "PostConstant.h"
 
 typedef struct Post_Node
 {

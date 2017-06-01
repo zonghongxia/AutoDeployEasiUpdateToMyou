@@ -147,7 +147,7 @@ void PostFiletoWeb::PostToWeb()
 	CURLcode res = CURLE_OK;
 	if (curl)
 	{
-		if (res == CURLE_OK) res = curl_easy_setopt(curl, CURLOPT_URL, cvte_url.c_str());
+		if (res == CURLE_OK) res = curl_easy_setopt(curl, CURLOPT_URL, m_node->m_cvteurl.c_str());
 		if (res == CURLE_OK) res = curl_easy_setopt(curl, CURLOPT_COOKIE, m_node->m_cookie.c_str());
 
 		curl_slist_append(headerlist, headerlistcontent.c_str());
