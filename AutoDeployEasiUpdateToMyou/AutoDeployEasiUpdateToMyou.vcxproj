@@ -118,7 +118,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CRT_SECURE_NO_WARNINGS;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
     <Link>
@@ -153,6 +153,7 @@
     <ClCompile Include="ExtractVersion.cpp" />
     <ClCompile Include="GetCookie.cpp" />
     <ClCompile Include="GetDiffHour.cpp" />
+    <ClCompile Include="Getdrive.cpp" />
     <ClCompile Include="GetExeFile.cpp" />
     <ClCompile Include="list_exefile.cpp" />
     <ClCompile Include="List_Filepath.cpp" />
@@ -173,6 +174,7 @@
     <ClInclude Include="ExtractVersion.h" />
     <ClInclude Include="GetCookie.h" />
     <ClInclude Include="GetDiffHour.h" />
+    <ClInclude Include="Getdrive.h" />
     <ClInclude Include="GetExeFile.h" />
     <ClInclude Include="list_exefile.h" />
     <ClInclude Include="List_Filepath.h" />

@@ -54,7 +54,11 @@ void PostPackage::PostToWeb()
 	}
 
 	//Ñ¹Ëõ
-	std::string zippath = "D://SeewoService";
+	Drive dr;
+	std::string drive;
+	dr.GetDrive(drive);
+	std::string zippath = drive+ myzipname;
+	//std::string zippath = "D://SeewoService";
 	zippath += version;
 	zippath += ".zip";
 	ZIP zip(installationpath, zippath);

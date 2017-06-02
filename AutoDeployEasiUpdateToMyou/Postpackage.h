@@ -17,9 +17,12 @@
 #include "md5.h"
 #include "deletefile.h"
 #include "Constant.h"
+#include "Getdrive.h"
 
 static std::string myouurl = "http://myou.cvte.com/api/in/policy/windowsapp/:appKey/version/upload";
 static const std::string myouappkey = ":appKey";
+
+static const std::string myzipname = "SeewoService";
 
 
 class PostPackage
