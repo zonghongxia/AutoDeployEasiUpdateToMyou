@@ -56,7 +56,12 @@ void PostPackage::PostToWeb()
 	//压缩
 	Drive dr;
 	std::string drive;
-	dr.GetDrive(drive);
+	dr.GetDrive(drive);//获取盘符
+	if (drive.empty())
+	{
+		std::cout << "用户没有合适的盘符" << std::endl;
+		return ;
+	}
 	std::string zippath = drive+ myzipname;
 	//std::string zippath = "D://SeewoService";
 	zippath += version;
@@ -92,7 +97,7 @@ void PostPackage::PostToWeb()
 	Post_Node postnode = { url ,cookie ,zipfilename ,zippath ,exefilename ,str ,exemd5 ,zipmd5 };
 	PostFiletoWeb web(&postnode);
 	web.PostToWeb();
-	std::cout << "上传完毕" << std::endl;
+ 	std::cout << "上传完毕" << std::endl;
 
 
 	//删除产生的zip文件
